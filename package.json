@@ -9,6 +9,7 @@
     "eject": "react-scripts eject"
   },
   "dependencies": {
+    "@rocketseat/unform": "^1.5.1",
     "history": "^4.9.0",
     "polished": "^3.4.1",
     "prop-types": "^15.7.2",
