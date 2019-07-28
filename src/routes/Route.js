@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Route, Redirect } from 'react-router-dom';
 
 import DefaultLayout from '~/pages/_layouts/default';
+import AuthLayout from '~/pages/_layouts/auth';
 import { store } from '~/store';
 
 function RouteWrapper({ component: Component, isPrivate, ...rest }) {
@@ -20,7 +21,7 @@ function RouteWrapper({ component: Component, isPrivate, ...rest }) {
    * Handle layouts if necessary below
    * Ex: Different layout for authenticated and unauthenticated routes
    */
-  const Layout = DefaultLayout;
+  const Layout = signed ? DefaultLayout : AuthLayout;
 
   return (
     <Route
