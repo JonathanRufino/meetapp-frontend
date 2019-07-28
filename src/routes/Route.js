@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Route, Redirect } from 'react-router-dom';
 
+import DefaultLayout from '../pages/_layouts/default';
+
 function RouteWrapper({ component: Component, isPrivate, ...rest }) {
   const signed = false;
 
@@ -13,7 +15,22 @@ function RouteWrapper({ component: Component, isPrivate, ...rest }) {
     return <Redirect to="/dashboard" />;
   }
 
-  return <Route {...rest} component={Component} />;
+  /**
+   * Handle layouts if necessary below
+   * Ex: Different layout for authenticated and unauthenticated routes
+   */
+  const Layout = DefaultLayout;
+
+  return (
+    <Route
+      {...rest}
+      render={props => (
+        <Layout>
+          <Component {...props} />
+        </Layout>
+      )}
+    />
+  );
 }
 
 RouteWrapper.propTypes = {
