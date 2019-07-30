@@ -1,8 +1,33 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { format } from 'date-fns';
+import pt from 'date-fns/locale/pt';
+
+import api from '~/services/api';
 
 import { Container, Meetup } from './styles';
 
 export default function Dashboard() {
+  const [meetups, setMeetups] = useState([]);
+
+  useEffect(() => {
+    async function loadMeetups() {
+      const response = await api.get('organizing');
+      console.tron.log(response);
+
+      const data = response.data.map(meetup => ({
+        ...meetup,
+        dateFormatted: format(meetup.date, 'D [de] MMMM[, às] H[h]', {
+          locale: pt,
+        }),
+      }));
+      // 24 de Junho, às 20h
+
+      setMeetups(data);
+    }
+
+    loadMeetups();
+  }, []);
+
   return (
     <Container>
       <header>
@@ -12,22 +37,12 @@ export default function Dashboard() {
       </header>
 
       <ul>
-        <Meetup>
-          <strong>Meetup de React Native</strong>
-          <span>24 de Junho, às 20h</span>
-        </Meetup>
-        <Meetup>
-          <strong>NodeJS Meetup</strong>
-          <span>17 de Julho, às 13h</span>
-        </Meetup>
-        <Meetup>
-          <strong>Rocketseat Meetup</strong>
-          <span>30 de Agosto, às 20h</span>
-        </Meetup>
-        <Meetup>
-          <strong>React on the house!</strong>
-          <span>17 de Novembro, às 16h</span>
-        </Meetup>
+        {meetups.map(meetup => (
+          <Meetup>
+            <strong>{meetup.title}</strong>
+            <span>{meetup.dateFormatted}</span>
+          </Meetup>
+        ))}
       </ul>
     </Container>
   );
