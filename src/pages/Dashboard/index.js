@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { format } from 'date-fns';
 import pt from 'date-fns/locale/pt';
+import { Link } from 'react-router-dom';
 
 import api from '~/services/api';
 
@@ -20,7 +21,6 @@ export default function Dashboard() {
           locale: pt,
         }),
       }));
-      // 24 de Junho, às 20h
 
       setMeetups(data);
     }
@@ -33,7 +33,9 @@ export default function Dashboard() {
       <header>
         <h1>Meus meetups</h1>
 
-        <button type="button">Novo meetup</button>
+        <Link to="/new">
+          <button type="button">Novo meetup</button>
+        </Link>
       </header>
 
       <ul>
