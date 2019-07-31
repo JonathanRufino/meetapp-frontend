@@ -40,10 +40,12 @@ export default function Dashboard() {
 
       <ul>
         {meetups.map(meetup => (
-          <Meetup>
-            <strong>{meetup.title}</strong>
-            <span>{meetup.dateFormatted}</span>
-          </Meetup>
+          <Link to={`/meetup/${meetup.id}`}>
+            <Meetup>
+              <strong>{meetup.title}</strong>
+              <span>{meetup.dateFormatted}</span>
+            </Meetup>
+          </Link>
         ))}
       </ul>
     </Container>
