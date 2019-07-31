@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import ReactDatePicker from 'react-datepicker';
 import PropTypes from 'prop-types';
-// import pt from 'date-fns/locale/pt';
+import pt from 'date-fns/locale/pt';
 
 import { useField } from '@rocketseat/unform';
 
@@ -32,8 +32,8 @@ function DatePicker({ name, placeholder }) {
         showTimeSelect
         timeFormat="HH:mm"
         timeIntervals={60}
-        dateFormat="dd/MM/yyyy hh:mm aa"
-        // locale={pt}
+        dateFormat="dd/MM/yyyy HH:mm"
+        locale={pt}
         onChange={date => setSelected(date)}
         ref={ref}
       />
