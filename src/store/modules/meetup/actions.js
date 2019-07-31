@@ -5,10 +5,9 @@ export function createMeetupRequest(data) {
   };
 }
 
-export function createMeetupSuccess(meetup) {
+export function createMeetupSuccess() {
   return {
     type: '@meetup/CREATE_MEETUP_SUCCESS',
-    payload: { meetup },
   };
 }
 

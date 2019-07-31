@@ -9,11 +9,11 @@ import {
 
 export function* createMeetup({ payload }) {
   try {
-    const response = yield call(api.post, 'meetups', payload.data);
+    yield call(api.post, 'meetups', payload.data);
 
     toast.success('Meetup criado com sucesso');
 
-    yield put(createMeetupSuccess(response.data));
+    yield put(createMeetupSuccess());
   } catch (err) {
     toast.error('Erro ao criar meetup, confira os dados informados');
 
