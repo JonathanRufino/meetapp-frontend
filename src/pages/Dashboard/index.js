@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { format } from 'date-fns';
+import { format, parseISO } from 'date-fns';
 import pt from 'date-fns/locale/pt';
 import { Link } from 'react-router-dom';
 
@@ -13,11 +13,10 @@ export default function Dashboard() {
   useEffect(() => {
     async function loadMeetups() {
       const response = await api.get('organizing');
-      console.tron.log(response);
 
       const data = response.data.map(meetup => ({
         ...meetup,
-        dateFormatted: format(meetup.date, 'D [de] MMMM[, às] H[h]', {
+        dateFormatted: format(parseISO(meetup.date), "d 'de' MMMM', às' H'h'", {
           locale: pt,
         }),
       }));
@@ -40,7 +39,12 @@ export default function Dashboard() {
 
       <ul>
         {meetups.map(meetup => (
-          <Link to={`/meetup/${meetup.id}`}>
+          <Link
+            to={{
+              pathname: `/meetup/${meetup.id}`,
+              state: { meetup },
+            }}
+          >
             <Meetup>
               <strong>{meetup.title}</strong>
               <span>{meetup.dateFormatted}</span>
