@@ -40,6 +40,7 @@ export default function Dashboard() {
       <ul>
         {meetups.map(meetup => (
           <Link
+            key={meetup.id}
             to={{
               pathname: `/meetup/${meetup.id}`,
               state: { meetup },
