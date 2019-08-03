@@ -1,13 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import { Container, Button } from './styles';
 
-export default function Details() {
+function Details({ location }) {
+  const { meetup } = location.state;
+
   return (
     <Container>
       <header>
-        <h1>Meetup de React Native</h1>
+        <h1>{meetup.title}</h1>
 
         <div>
           <Button type="button" secondary>
@@ -19,23 +22,34 @@ export default function Details() {
         </div>
       </header>
 
-      <img
-        src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60"
-        alt="Banner"
-      />
+      <img src={meetup.banner.url} alt="Banner" />
 
-      <span>
-        O Meetup de React Native é um evento que reúne a comunidade de
-        desenvolvimento mobile utilizando React a fim de compartilhar
-        conhecimento. Todos são convidados. Caso queira participar como
-        palestrante do meetup envie um e-mail para organizacao@meetuprn.com.br.
-      </span>
+      <span>{meetup.description}</span>
 
       <footer>
-        <time>24 de Junho, às 20h</time>
+        <time>{meetup.dateFormatted}</time>
 
-        <address>Rua Guilherme Gembala, 260</address>
+        <address>{meetup.location}</address>
       </footer>
     </Container>
   );
 }
+
+Details.propTypes = {
+  location: PropTypes.shape({
+    state: PropTypes.shape({
+      meetup: PropTypes.shape({
+        id: PropTypes.number,
+        title: PropTypes.string,
+        description: PropTypes.string,
+        location: PropTypes.string,
+        banner: PropTypes.shape({
+          url: PropTypes.string,
+        }),
+        dateFormatted: PropTypes.string,
+      }),
+    }),
+  }).isRequired,
+};
+
+export default Details;
