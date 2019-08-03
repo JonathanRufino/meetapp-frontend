@@ -24,6 +24,18 @@ function meetup(state = INITIAL_STATE, action) {
         draft.loading = false;
         break;
       }
+      case '@meetup/UPDATE_MEETUP_REQUEST': {
+        draft.loading = true;
+        break;
+      }
+      case '@meetup/UPDATE_MEETUP_SUCCESS': {
+        draft.loading = false;
+        break;
+      }
+      case '@meetup/UPDATE_MEETUP_FAILURE': {
+        draft.loading = false;
+        break;
+      }
       default:
     }
   });

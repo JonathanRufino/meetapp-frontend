@@ -13,9 +13,16 @@ function Details({ location }) {
         <h1>{meetup.title}</h1>
 
         <div>
-          <Button type="button" secondary>
-            Editar
-          </Button>
+          <Link
+            to={{
+              pathname: `/edit/${meetup.id}`,
+              state: { meetup },
+            }}
+          >
+            <Button type="button" secondary>
+              Editar
+            </Button>
+          </Link>
           <Link to="/">
             <Button type="button">Cancelar</Button>
           </Link>
