@@ -2,12 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { format, parseISO } from 'date-fns';
 import pt from 'date-fns/locale/pt';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 import api from '~/services/api';
 
 import { Container, Meetup } from './styles';
 
-export default function Dashboard() {
+function Dashboard() {
+  const { t } = useTranslation();
+
   const [meetups, setMeetups] = useState([]);
 
   useEffect(() => {
@@ -30,10 +33,10 @@ export default function Dashboard() {
   return (
     <Container>
       <header>
-        <h1>Meus meetups</h1>
+        <h1>{t('header.myMeetups')}</h1>
 
         <Link to="/new">
-          <button type="button">Novo meetup</button>
+          <button type="button">{t('button.newMeetup')}</button>
         </Link>
       </header>
 
@@ -56,3 +59,5 @@ export default function Dashboard() {
     </Container>
   );
 }
+
+export default Dashboard;

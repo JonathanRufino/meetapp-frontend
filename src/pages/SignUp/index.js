@@ -3,21 +3,24 @@ import { Link } from 'react-router-dom';
 import { Form, Input } from '@rocketseat/unform';
 import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 
 import logo from '~/assets/logo.svg';
 import { signUpRequest } from '~/store/modules/auth/actions';
+import i18n from '~/i18n';
 
 const SIGN_UP_SCHEMA = Yup.object().shape({
-  name: Yup.string().required('O nome é obrigatório'),
+  name: Yup.string().required(i18n.t('error.empty.signName')),
   email: Yup.string()
-    .email('Insira um e-mail válido')
-    .required('O e-mail é obrigatório'),
+    .email(i18n.t('error.invalid.email'))
+    .required(i18n.t('error.empty.signEmail')),
   password: Yup.string()
-    .min(6, 'No mínimo 6 caracteres')
-    .required('A senha é obrigatória'),
+    .min(6, i18n.t('error.length.password.min'))
+    .required(i18n.t('error.empty.signPassword')),
 });
 
 function SignUp() {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
 
   function handleSubmit({ name, email, password }) {
@@ -29,17 +32,21 @@ function SignUp() {
       <img src={logo} alt="Meetapp" />
 
       <Form schema={SIGN_UP_SCHEMA} onSubmit={handleSubmit}>
-        <Input name="name" placeholder="Nome completo" />
-        <Input name="email" type="email" placeholder="Digite seu e-mail" />
+        <Input name="name" placeholder={t('placeholder.signName')} />
+        <Input
+          name="email"
+          type="email"
+          placeholder={t('placeholder.signEmail')}
+        />
         <Input
           name="password"
           type="password"
-          placeholder="Sua senha secreta"
+          placeholder={t('placeholder.signPassword')}
         />
 
-        <button type="submit">Criar conta</button>
+        <button type="submit">{t('button.createAccount')}</button>
 
-        <Link to="/">Já tenho login</Link>
+        <Link to="/">{t('link.hasAccount')}</Link>
       </Form>
     </>
   );

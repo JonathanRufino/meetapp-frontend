@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 
 import logo from '~/assets/logo.svg';
 import { signOut } from '~/store/modules/auth/actions';
@@ -9,6 +10,7 @@ import { Container, Content, Profile } from './styles';
 
 export default function Header() {
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   const profile = useSelector(state => state.user.profile);
 
@@ -29,12 +31,12 @@ export default function Header() {
           <Profile>
             <div>
               <strong>{profile.name}</strong>
-              <Link to="/profile">Meu perfil</Link>
+              <Link to="/profile">{t('link.myProfile')}</Link>
             </div>
           </Profile>
 
           <button type="button" onClick={handleSignOut}>
-            Sair
+            {t('button.signOut')}
           </button>
         </aside>
       </Content>

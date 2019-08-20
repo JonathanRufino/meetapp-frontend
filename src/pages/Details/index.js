@@ -1,11 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
 
 import { Container, Button } from './styles';
 
 function Details({ location }) {
   const { meetup } = location.state;
+
+  const { t } = useTranslation();
 
   return (
     <Container>
@@ -20,11 +23,11 @@ function Details({ location }) {
             }}
           >
             <Button type="button" secondary>
-              Editar
+              {t('button.edit')}
             </Button>
           </Link>
           <Link to="/">
-            <Button type="button">Cancelar</Button>
+            <Button type="button">{t('button.cancel')}</Button>
           </Link>
         </div>
       </header>

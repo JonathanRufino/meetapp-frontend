@@ -5,6 +5,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { ToastContainer } from 'react-toastify';
 
 import './config/ReactotronConfig';
+import './i18n';
 
 import Routes from './routes';
 import history from './services/history';
