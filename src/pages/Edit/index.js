@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Form, Input } from '@rocketseat/unform';
 import * as Yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
@@ -24,12 +24,18 @@ const MEETUP_SCHEMA = Yup.object().shape({
 });
 
 function Edit({ location }) {
-  const { meetup } = location.state;
-
   const { t } = useTranslation();
   const dispatch = useDispatch();
 
   const loading = useSelector(state => state.meetup.loading);
+
+  const meetup = useMemo(
+    () => ({
+      ...location.state.meetup,
+      date: parseISO(location.state.meetup.date),
+    }),
+    [location.state.meetup]
+  );
 
   function handleSubmit(data) {
     dispatch(updateMeetupRequest(meetup.id, data));
@@ -37,13 +43,8 @@ function Edit({ location }) {
 
   return (
     <Container>
-      <Form
-        schema={MEETUP_SCHEMA}
-        initialData={{ ...meetup, date: parseISO(meetup.date) }}
-        onSubmit={handleSubmit}
-      >
+      <Form schema={MEETUP_SCHEMA} initialData={meetup} onSubmit={handleSubmit}>
         <BannerInput name="banner_id" />
-
         <Input name="title" placeholder={t('placeholder.meetupTitle')} />
         <Input
           name="description"
@@ -57,7 +58,6 @@ function Edit({ location }) {
           type=""
           placeholder={t('placeholder.meetupLocation')}
         />
-
         <button type="submit">
           {loading ? t('state.saving') : t('button.saveMeetup')}
         </button>

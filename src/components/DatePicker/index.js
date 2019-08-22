@@ -21,7 +21,7 @@ function DatePicker({ name, placeholder }) {
         pickerRef.clear();
       },
     });
-  }, [fieldName, registerField]);
+  }, [ref.current, fieldName]); // eslint-disable-line
 
   return (
     <>
