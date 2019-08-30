@@ -3,19 +3,25 @@ import { format, parseISO } from 'date-fns';
 import pt from 'date-fns/locale/pt';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { FaSpinner } from 'react-icons/fa';
+import { MdChevronLeft, MdChevronRight } from 'react-icons/md';
 
 import api from '~/services/api';
 
-import { Container, Meetup } from './styles';
+import { Container, Meetup, PageControl, Loading } from './styles';
 
 function Dashboard() {
   const { t } = useTranslation();
 
   const [meetups, setMeetups] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
     async function loadMeetups() {
-      const response = await api.get('organizing');
+      const response = await api.get('organizing', {
+        params: { page },
+      });
 
       const data = response.data.map(meetup => ({
         ...meetup,
@@ -25,10 +31,19 @@ function Dashboard() {
       }));
 
       setMeetups(data);
+      setLoading(false);
     }
 
     loadMeetups();
-  }, []);
+  }, [page]);
+
+  function handlePrevPage() {
+    setPage(page - 1);
+  }
+
+  function handleNextPage() {
+    setPage(page + 1);
+  }
 
   return (
     <Container>
@@ -40,22 +55,48 @@ function Dashboard() {
         </Link>
       </header>
 
-      <ul>
-        {meetups.map(meetup => (
-          <Link
-            key={meetup.id}
-            to={{
-              pathname: `/meetup/${meetup.id}`,
-              state: { meetup },
-            }}
-          >
-            <Meetup>
-              <strong>{meetup.title}</strong>
-              <span>{meetup.dateFormatted}</span>
-            </Meetup>
-          </Link>
-        ))}
-      </ul>
+      {loading ? (
+        <Loading>
+          <FaSpinner size={40} color="#f94d6a" />
+        </Loading>
+      ) : (
+        <>
+          <ul>
+            {meetups.map(meetup => (
+              <Link
+                key={meetup.id}
+                to={{
+                  pathname: `/meetup/${meetup.id}`,
+                  state: { meetup },
+                }}
+              >
+                <Meetup>
+                  <strong>{meetup.title}</strong>
+                  <span>{meetup.dateFormatted}</span>
+                </Meetup>
+              </Link>
+            ))}
+          </ul>
+
+          <PageControl>
+            <button
+              type="button"
+              disabled={page === 1}
+              onClick={handlePrevPage}
+            >
+              <MdChevronLeft size={24} /> {t('button.previous')}
+            </button>
+            <span>{page}</span>
+            <button
+              type="button"
+              disabled={meetups.length < 10}
+              onClick={handleNextPage}
+            >
+              {t('button.next')} <MdChevronRight size={24} />
+            </button>
+          </PageControl>
+        </>
+      )}
     </Container>
   );
 }
