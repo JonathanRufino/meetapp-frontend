@@ -33,7 +33,8 @@
   },
   "state": {
     "saving": "Salvando...",
-    "loading": "Carregando..."
+    "loading": "Carregando...",
+    "cancelling": "Cancelando..."
   },
   "error": {
     "empty": {
