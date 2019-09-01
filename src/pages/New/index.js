@@ -3,6 +3,7 @@ import { Form, Input } from '@rocketseat/unform';
 import * as Yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
+import { MdAdd } from 'react-icons/md';
 
 import BannerInput from '~/components/BannerInput';
 import DatePicker from '~/components/DatePicker';
@@ -51,6 +52,7 @@ export default function New() {
         />
 
         <button type="submit">
+          <MdAdd size={24} color="#fff" />{' '}
           {loading ? t('state.saving') : t('button.saveMeetup')}
         </button>
       </Form>

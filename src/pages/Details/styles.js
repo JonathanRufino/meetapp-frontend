@@ -16,6 +16,11 @@ export const Container = styled.div`
       color: #fff;
       font-size: 32px;
     }
+
+    div {
+      display: flex;
+      flex-direction: row;
+    }
   }
 
   img {
@@ -37,10 +42,14 @@ export const Container = styled.div`
     font-size: 16px;
     display: flex;
     margin-top: 30px;
-    padding-left: 20px;
+    align-items: center;
 
-    address {
-      margin-left: 40px;
+    svg {
+      margin: 0 10px 0 0;
+    }
+
+    time + svg {
+      margin-left: 30px;
     }
   }
 `;
@@ -57,6 +66,8 @@ export const Button = styled.button`
   font-size: 16px;
   transition: background 0.2s;
   padding: 0 25px;
+  display: flex;
+  align-items: center;
 
   &:hover {
     background: ${props =>
@@ -65,5 +76,9 @@ export const Button = styled.button`
 
   &:last-of-type {
     margin-left: 15px;
+  }
+
+  svg {
+    margin-right: 10px;
   }
 `;

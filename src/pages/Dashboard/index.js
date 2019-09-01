@@ -4,7 +4,7 @@ import pt from 'date-fns/locale/pt';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { FaSpinner } from 'react-icons/fa';
-import { MdChevronLeft, MdChevronRight } from 'react-icons/md';
+import { MdChevronLeft, MdChevronRight, MdAdd } from 'react-icons/md';
 
 import api from '~/services/api';
 
@@ -51,7 +51,9 @@ function Dashboard() {
         <h1>{t('header.myMeetups')}</h1>
 
         <Link to="/new">
-          <button type="button">{t('button.newMeetup')}</button>
+          <button type="button">
+            <MdAdd size={24} color="#fff" /> {t('button.newMeetup')}
+          </button>
         </Link>
       </header>
 
@@ -72,7 +74,10 @@ function Dashboard() {
               >
                 <Meetup>
                   <strong>{meetup.title}</strong>
-                  <span>{meetup.dateFormatted}</span>
+                  <div>
+                    <span>{meetup.dateFormatted}</span>
+                    <MdChevronRight size={24} color="#fff" />
+                  </div>
                 </Meetup>
               </Link>
             ))}

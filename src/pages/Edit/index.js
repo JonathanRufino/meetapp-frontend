@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { parseISO } from 'date-fns';
 import { useTranslation } from 'react-i18next';
+import { MdAdd } from 'react-icons/md';
 
 import BannerInput from '~/components/BannerInput';
 import DatePicker from '~/components/DatePicker';
@@ -59,6 +60,7 @@ function Edit({ location }) {
           placeholder={t('placeholder.meetupLocation')}
         />
         <button type="submit">
+          <MdAdd size={24} color="#fff" />{' '}
           {loading ? t('state.saving') : t('button.saveMeetup')}
         </button>
       </Form>

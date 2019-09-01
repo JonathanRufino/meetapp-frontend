@@ -46,9 +46,15 @@ export const Container = styled.div`
       font-size: 16px;
       transition: background 0.2s;
       padding: 0 25px;
+      display: flex;
+      align-items: center;
 
       &:hover {
         background: ${darken(0.08, '#F94D6A')};
+      }
+
+      svg {
+        margin-right: 10px;
       }
     }
   }
@@ -74,9 +80,18 @@ export const Meetup = styled.li`
     color: #fff;
   }
 
+  div {
+    display: flex;
+    align-items: center;
+  }
+
   span {
     color: rgba(255, 255, 255, 0.6);
     font-size: 16px;
+  }
+
+  svg {
+    margin-left: 30px;
   }
 `;
 

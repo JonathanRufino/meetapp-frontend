@@ -66,9 +66,15 @@ export const Container = styled.div`
       font-size: 16px;
       transition: background 0.2s;
       padding: 0 25px;
+      display: flex;
+      align-items: center;
 
       &:hover {
         background: ${darken(0.03, '#F94D6A')};
+      }
+
+      svg {
+        margin-right: 10px;
       }
     }
   }
