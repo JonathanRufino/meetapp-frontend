@@ -1,7 +1,10 @@
 {
-  "name": "desafio-09",
-  "version": "0.1.0",
-  "private": true,
+  "name": "jonathanrufino-meetapp-frontend",
+  "version": "1.0.0",
+  "private": false,
+  "description": "Frontend module for the Rocketseat's Bootcamp challenge",
+  "author": "Jonathan Rufino <jonathanrufinopaiva@gmail.com>",
+  "license": "MIT",
   "scripts": {
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
