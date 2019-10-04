@@ -5,7 +5,7 @@ import * as Yup from 'yup';
 import { useTranslation } from 'react-i18next';
 
 import { updateProfileRequest } from '~/store/modules/user/actions';
-import i18n from '~/i18n';
+import i18n from '~/config/i18n';
 
 import { Container } from './styles';
 

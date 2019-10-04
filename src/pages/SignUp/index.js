@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 
 import logo from '~/assets/logo.svg';
 import { signUpRequest } from '~/store/modules/auth/actions';
-import i18n from '~/i18n';
+import i18n from '~/config/i18n';
 
 const SIGN_UP_SCHEMA = Yup.object().shape({
   name: Yup.string().required(i18n.t('error.empty.signName')),

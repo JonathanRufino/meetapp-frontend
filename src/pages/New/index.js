@@ -8,7 +8,7 @@ import { MdAdd } from 'react-icons/md';
 import BannerInput from '~/components/BannerInput';
 import DatePicker from '~/components/DatePicker';
 import { createMeetupRequest } from '~/store/modules/meetup/actions';
-import i18n from '~/i18n';
+import i18n from '~/config/i18n';
 
 import { Container } from './styles';
 

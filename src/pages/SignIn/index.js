@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 
 import logo from '~/assets/logo.svg';
 import { signInRequest } from '~/store/modules/auth/actions';
-import i18n from '~/i18n';
+import i18n from '~/config/i18n';
 
 const SIGN_IN_SCHEMA = Yup.object().shape({
   email: Yup.string()
