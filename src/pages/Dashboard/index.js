@@ -50,7 +50,7 @@ function Dashboard() {
       <header>
         <h1>{t('header.myMeetups')}</h1>
 
-        <Link to="/new">
+        <Link to="/meetup/new">
           <button type="button">
             <MdAdd size={24} color="#fff" /> {t('button.newMeetup')}
           </button>

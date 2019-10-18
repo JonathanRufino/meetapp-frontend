@@ -15,13 +15,13 @@ import Edit from '~/pages/Edit';
 function Routes() {
   return (
     <Switch>
-      <Route path="/" exact component={SignIn} />
+      <Route path="/" component={SignIn} exact />
       <Route path="/register" component={SignUp} />
 
       <Route path="/dashboard" component={Dashboard} isPrivate />
+      <Route path="/meetup/new" component={New} isPrivate exact />
       <Route path="/meetup/:id" component={Details} isPrivate />
-      <Route path="/edit/:id" component={Edit} isPrivate />
-      <Route path="/new" component={New} isPrivate />
+      <Route path="/meetup/:id/edit" component={Edit} isPrivate />
       <Route path="/profile" component={Profile} isPrivate />
     </Switch>
   );
