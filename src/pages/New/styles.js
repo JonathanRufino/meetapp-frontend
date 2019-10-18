@@ -54,7 +54,7 @@ export const Container = styled.div`
       font-weight: bold;
     }
 
-    button {
+    > button {
       align-self: flex-end;
       margin: 20px 0 auto;
       height: 44px;
